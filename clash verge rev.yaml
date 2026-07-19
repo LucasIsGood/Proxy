@@ -1,0 +1,605 @@
+mode: rule
+mixed-port: 7897
+allow-lan: false
+log-level: warning
+ipv6: false
+external-controller: ''
+secret: set-your-secret
+unified-delay: false
+external-controller-pipe: \\.\pipe\verge-mihomo
+external-controller-cors:
+  allow-private-network: true
+  allow-origins:
+  - tauri://localhost
+  - http://tauri.localhost
+  - https://yacd.metacubex.one
+  - https://metacubex.github.io
+  - https://board.zash.run.place
+profile:
+  store-selected: true
+tun:
+  enable: false
+  stack: gvisor
+  auto-route: true
+  strict-route: false
+  auto-detect-interface: true
+  dns-hijack:
+  - any:53
+proxies: []
+
+proxy-providers:
+  CloudA:
+    type: http
+    path: ./profiles/proxies/CloudA.yaml
+    url: https://api.prodigal4936.com/?L1N1YnNjcmlwdGlvbi9DbGFzaD90PWFueXRsc19jbGFzaCZzaWQ9MzE4MDEmdG9rZW49YjlkNTQxZjVjYTk4MTQmbW09NDE4ODcma3RtbT1aRzBMSlVGQi9zdFV6L3E3akxzYlZnPT0mYWEwZWE2OGJjNmJhNGQyNWE1NDg4MzU5YyZtbT00MTg4NyZrdG1tPVpHMExKVUZCJTJmc3R4eUUzWWtUTmRrdyUzZCUzZCYwMGY1YzBlZQ==
+    interval: 3600
+    filter: null
+    health-check:
+      enable: true
+      url: http://www.gstatic.com/generate_204
+      interval: 300
+
+
+proxy-groups:
+  - name: PROXY
+    type: select
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Proxy.png
+    use:
+      - CloudA
+    proxies:
+      - DIRECT
+
+
+  - name: OneDrive
+    type: select
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/OneDrive.png
+    use:
+      - CloudA
+    proxies:
+      - DIRECT
+      - PROXY
+
+
+  - name: Microsoft
+    type: select
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Microsoft.png
+    use:
+      - CloudA
+    proxies:
+      - DIRECT
+      - PROXY
+
+
+  - name: Apple
+    type: select
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Apple.png
+    use:
+      - CloudA
+    proxies:
+      - DIRECT
+      - PROXY
+
+  - name: Gemini
+    type: select
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    icon: https://raw.githubusercontent.com/LucasIsGood/Public/main/Icon/Gemini.png
+    use:
+      - CloudA
+    proxies:
+      - PROXY
+      - DIRECT
+
+
+  - name: YouTube
+    type: select
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/YouTube.png
+    use:
+      - CloudA
+    proxies:
+      - PROXY
+      - DIRECT
+
+
+  - name: Google
+    type: select
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Google.png
+    use:
+      - CloudA
+    proxies:
+      - PROXY
+      - DIRECT
+
+
+  - name: Spotify
+    type: select
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Spotify.png
+    use:
+      - CloudA
+    proxies:
+      - PROXY
+      - DIRECT
+
+
+  - name: OpenAI
+    type: select
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/OpenAI.png
+    use:
+      - CloudA
+    proxies:
+      - PROXY
+      - DIRECT
+
+
+  - name: Netflix
+    type: select
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Netflix.png
+    use:
+      - CloudA
+    proxies:
+      - PROXY
+      - DIRECT
+
+
+  - name: Twitch
+    type: select
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Twitch.png
+    use:
+      - CloudA
+    proxies:
+      - PROXY
+      - DIRECT
+
+  - name: Steam
+    type: select
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Steam.png
+    use:
+      - CloudA
+    proxies:
+      - DIRECT
+      - PROXY
+
+
+  - name: Epic
+    type: select
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    icon: https://raw.githubusercontent.com/LucasIsGood/Public/main/Icon/Epic.png
+    use:
+      - CloudA
+    proxies:
+      - DIRECT
+      - PROXY
+
+
+rule-providers:
+  reject:
+    type: http
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/reject.txt"
+    path: ./ruleset/reject.yaml
+    interval: 86400
+
+  icloud:
+    type: http
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/icloud.txt"
+    path: ./ruleset/icloud.yaml
+    interval: 86400
+
+  apple:
+    type: http
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/apple.txt"
+    path: ./ruleset/apple.yaml
+    interval: 86400
+
+  google:
+    type: http
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/google.txt"
+    path: ./ruleset/google.yaml
+    interval: 86400
+
+  proxy:
+    type: http
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/proxy.txt"
+    path: ./ruleset/proxy.yaml
+    interval: 86400
+
+  direct:
+    type: http
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/direct.txt"
+    path: ./ruleset/direct.yaml
+    interval: 86400
+
+  private:
+    type: http
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/private.txt"
+    path: ./ruleset/private.yaml
+    interval: 86400
+
+  gfw:
+    type: http
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/gfw.txt"
+    path: ./ruleset/gfw.yaml
+    interval: 86400
+
+  tld-not-cn:
+    type: http
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/tld-not-cn.txt"
+    path: ./ruleset/tld-not-cn.yaml
+    interval: 86400
+
+  telegramcidr:
+    type: http
+    behavior: ipcidr
+    url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/telegramcidr.txt"
+    path: ./ruleset/telegramcidr.yaml
+    interval: 86400
+
+  cncidr:
+    type: http
+    behavior: ipcidr
+    url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/cncidr.txt"
+    path: ./ruleset/cncidr.yaml
+    interval: 86400
+
+  lancidr:
+    type: http
+    behavior: ipcidr
+    url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/lancidr.txt"
+    path: ./ruleset/lancidr.yaml
+    interval: 86400
+
+  applications:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/applications.txt"
+    path: ./ruleset/applications.yaml
+    interval: 86400
+
+
+rules:
+  # ------------------------------------------------
+  - DOMAIN-SUFFIX,raw.githubusercontent.com,PROXY
+  - DOMAIN-SUFFIX,justwatch.com,PROXY
+  - DOMAIN-SUFFIX,disneyplus.bn5x.net,PROXY
+
+
+  # ------------------------------------------------
+  # OneDrive
+  - DOMAIN-SUFFIX,onedrive.live.com,PROXY
+  - DOMAIN-SUFFIX,sharepoint.com,OneDrive
+  - DOMAIN-SUFFIX,storage.live.com,OneDrive
+  - DOMAIN-SUFFIX,1drv.com,OneDrive
+  - DOMAIN-SUFFIX,live.net,OneDrive
+  - DOMAIN-SUFFIX,onedrive.com,OneDrive
+  - DOMAIN-SUFFIX,microsoftpersonalcontent.com,OneDrive
+
+
+
+  # ------------------------------------------------
+  # Microsoft
+  - DOMAIN-KEYWORD,1drv,Microsoft
+  - DOMAIN-KEYWORD,microsoft,Microsoft
+  - DOMAIN-SUFFIX,aadrm.com,Microsoft
+  - DOMAIN-SUFFIX,acompli.com,Microsoft
+  - DOMAIN-SUFFIX,acompli.net,Microsoft
+  - DOMAIN-SUFFIX,aka.ms,Microsoft
+  - DOMAIN-SUFFIX,akadns.net,Microsoft
+  - DOMAIN-SUFFIX,aspnetcdn.com,Microsoft
+  - DOMAIN-SUFFIX,assets-yammer.com,Microsoft
+  - DOMAIN-SUFFIX,azure.com,Microsoft
+  - DOMAIN-SUFFIX,azure.net,Microsoft
+  - DOMAIN-SUFFIX,azureedge.net,Microsoft
+  - DOMAIN-SUFFIX,azureiotcentral.com,Microsoft
+  - DOMAIN-SUFFIX,azurerms.com,Microsoft
+  - DOMAIN-SUFFIX,bing.com,Microsoft
+  - DOMAIN-SUFFIX,bing.net,Microsoft
+  - DOMAIN-SUFFIX,bingapis.com,Microsoft
+  - DOMAIN-SUFFIX,cloudapp.net,Microsoft
+  - DOMAIN-SUFFIX,cloudappsecurity.com,Microsoft
+  - DOMAIN-SUFFIX,edgesuite.net,Microsoft
+  - DOMAIN-SUFFIX,gfx.ms,Microsoft
+  - DOMAIN-SUFFIX,hotmail.com,Microsoft
+  - DOMAIN-SUFFIX,live.com,Microsoft
+  - DOMAIN-SUFFIX,live.net,Microsoft
+  - DOMAIN-SUFFIX,lync.com,Microsoft
+  - DOMAIN-SUFFIX,msappproxy.net,Microsoft
+  - DOMAIN-SUFFIX,msauth.net,Microsoft
+  - DOMAIN-SUFFIX,msauthimages.net,Microsoft
+  - DOMAIN-SUFFIX,msecnd.net,Microsoft
+  - DOMAIN-SUFFIX,msedge.net,Microsoft
+  - DOMAIN-SUFFIX,msft.net,Microsoft
+  - DOMAIN-SUFFIX,msftauth.net,Microsoft
+  - DOMAIN-SUFFIX,msftauthimages.net,Microsoft
+  - DOMAIN-SUFFIX,msftidentity.com,Microsoft
+  - DOMAIN-SUFFIX,msidentity.com,Microsoft
+  - DOMAIN-SUFFIX,msn.cn,Microsoft
+  - DOMAIN-SUFFIX,msn.com,Microsoft
+  - DOMAIN-SUFFIX,msocdn.com,Microsoft
+  - DOMAIN-SUFFIX,msocsp.com,Microsoft
+  - DOMAIN-SUFFIX,mstea.ms,Microsoft
+  - DOMAIN-SUFFIX,o365weve.com,Microsoft
+  - DOMAIN-SUFFIX,oaspapps.com,Microsoft
+  - DOMAIN-SUFFIX,office.com,Microsoft
+  - DOMAIN-SUFFIX,office.net,Microsoft
+  - DOMAIN-SUFFIX,office365.com,Microsoft
+  - DOMAIN-SUFFIX,officeppe.net,Microsoft
+  - DOMAIN-SUFFIX,omniroot.com,Microsoft
+  - DOMAIN-SUFFIX,onedrive.com,Microsoft
+  - DOMAIN-SUFFIX,onenote.com,Microsoft
+  - DOMAIN-SUFFIX,onenote.net,Microsoft
+  - DOMAIN-SUFFIX,onestore.ms,Microsoft
+  - DOMAIN-SUFFIX,outlook.com,Microsoft
+  - DOMAIN-SUFFIX,outlookmobile.com,Microsoft
+  - DOMAIN-SUFFIX,phonefactor.net,Microsoft
+  - DOMAIN-SUFFIX,public-trust.com,Microsoft
+  - DOMAIN-SUFFIX,sfbassets.com,Microsoft
+  - DOMAIN-SUFFIX,sfx.ms,Microsoft
+  - DOMAIN-SUFFIX,sharepoint.com,Microsoft
+  - DOMAIN-SUFFIX,sharepointonline.com,Microsoft
+  - DOMAIN-SUFFIX,skype.com,Microsoft
+  - DOMAIN-SUFFIX,skypeassets.com,Microsoft
+  - DOMAIN-SUFFIX,skypeforbusiness.com,Microsoft
+  - DOMAIN-SUFFIX,staffhub.ms,Microsoft
+  - DOMAIN-SUFFIX,svc.ms,Microsoft
+  - DOMAIN-SUFFIX,sway-cdn.com,Microsoft
+  - DOMAIN-SUFFIX,sway-extensions.com,Microsoft
+  - DOMAIN-SUFFIX,sway.com,Microsoft
+  - DOMAIN-SUFFIX,trafficmanager.net,Microsoft
+  - DOMAIN-SUFFIX,uservoice.com,Microsoft
+  - DOMAIN-SUFFIX,virtualearth.net,Microsoft
+  - DOMAIN-SUFFIX,visualstudio.com,Microsoft
+  - DOMAIN-SUFFIX,windows-ppe.net,Microsoft
+  - DOMAIN-SUFFIX,windows.com,Microsoft
+  - DOMAIN-SUFFIX,windows.net,Microsoft
+  - DOMAIN-SUFFIX,windowsazure.com,Microsoft
+  - DOMAIN-SUFFIX,windowsupdate.com,Microsoft
+  - DOMAIN-SUFFIX,wunderlist.com,Microsoft
+  - DOMAIN-SUFFIX,yammer.com,Microsoft
+  - DOMAIN-SUFFIX,yammerusercontent.com,Microsoft
+
+
+  # ------------------------------------------------
+  # Gemini
+  - DOMAIN,ai.google.dev,Gemini
+  - DOMAIN,alkalimakersuite-pa.clients6.google.com,Gemini
+  - DOMAIN,makersuite.google.com,Gemini
+  - DOMAIN,aisandbox-pa.googleapis.com,Gemini
+  - DOMAIN,robinfrontend-pa.googleapis.com,Gemini
+  - DOMAIN-SUFFIX,deepmind.com,Gemini
+  - DOMAIN-SUFFIX,deepmind.google,Gemini
+  - DOMAIN-SUFFIX,gemini.google,Gemini
+  - DOMAIN-SUFFIX,gemini.google.com,Gemini
+  - DOMAIN-SUFFIX,generativeai.google,Gemini
+  - DOMAIN-SUFFIX,proactivebackend-pa.googleapis.com,Gemini
+  - DOMAIN-SUFFIX,apis.google.com,Gemini
+  - DOMAIN-SUFFIX,gemini.gstatic.com,Gemini
+
+
+  # ------------------------------------------------
+  # YouTube
+  - DOMAIN-KEYWORD,youtube,YouTube
+  - DOMAIN,youtubei.googleapis.com,YouTube
+  - DOMAIN,yt3.ggpht.com,YouTube
+  - DOMAIN-SUFFIX,googlevideo.com,YouTube
+  - DOMAIN-SUFFIX,gvt2.com,YouTube
+  - DOMAIN-SUFFIX,withyoutube.com,YouTube
+  - DOMAIN-SUFFIX,youtu.be,YouTube
+  - DOMAIN-SUFFIX,youtube-nocookie.com,YouTube
+  - DOMAIN-SUFFIX,youtube.com,YouTube
+  - DOMAIN-SUFFIX,youtubeeducation.com,YouTube
+  - DOMAIN-SUFFIX,youtubegaming.com,YouTube
+  - DOMAIN-SUFFIX,youtubekids.com,YouTube
+  - DOMAIN-SUFFIX,yt.be,YouTube
+  - DOMAIN-SUFFIX,ytimg.com,YouTube
+
+
+
+  # ------------------------------------------------
+  # Spotify
+  - DOMAIN,audio4-ak-spotify-com.akamaized.net,Spotify
+  - DOMAIN,cdn-spotify-experiments.conductrics.com,Spotify
+  - DOMAIN,heads-ak-spotify-com.akamaized.net,Spotify
+  - DOMAIN,spotify.com.edgesuite.net,Spotify
+  - DOMAIN,spotify.map.fastly.net,Spotify
+  - DOMAIN,spotify.map.fastlylb.net,Spotify
+  - DOMAIN-SUFFIX,audio-ak-spotify-com.akamaized.net,Spotify
+  - DOMAIN-SUFFIX,byspotify.com,Spotify
+  - DOMAIN-SUFFIX,heads4-ak-spotify-com.akamaized.net,Spotify
+  - DOMAIN-SUFFIX,pscdn.co,Spotify
+  - DOMAIN-SUFFIX,scdn.co,Spotify
+  - DOMAIN-SUFFIX,spoti.fi,Spotify
+  - DOMAIN-SUFFIX,spotify-com.akamaized.net,Spotify
+  - DOMAIN-SUFFIX,spotify-everywhere.com,Spotify
+  - DOMAIN-SUFFIX,spotify.com,Spotify
+  - DOMAIN-SUFFIX,spotify.design,Spotify
+  - DOMAIN-SUFFIX,spotifycdn.com,Spotify
+  - DOMAIN-SUFFIX,spotifycdn.net,Spotify
+  - DOMAIN-SUFFIX,spotifycharts.com,Spotify
+  - DOMAIN-SUFFIX,spotifycodes.com,Spotify
+  - DOMAIN-SUFFIX,spotifyforbrands.com,Spotify
+  - DOMAIN-SUFFIX,spotifyjobs.com,Spotify
+  - DOMAIN-SUFFIX,spotifynewsroom.jp,Spotify
+  - DOMAIN-SUFFIX,spotilocal.com,Spotify
+  - DOMAIN-SUFFIX,tospotify.com,Spotify
+  - DOMAIN-KEYWORD,-spotify-,Spotify
+  - DOMAIN-KEYWORD,spotify.com,Spotify
+  - IP-CIDR,104.154.127.126/32,Spotify
+  - IP-CIDR,35.186.224.47/32,Spotify
+  - PROCESS-NAME,com.spotify.music,Spotify
+
+
+
+
+
+
+  # ------------------------------------------------
+  # OpenAI
+  - DOMAIN-KEYWORD,openai,OpenAI
+  - DOMAIN-SUFFIX,chatgpt.com,OpenAI
+  - DOMAIN-SUFFIX,oaistatic.com,OpenAI
+  - DOMAIN-SUFFIX,oaiusercontent.com,OpenAI
+  - DOMAIN-SUFFIX,openai.com,OpenAI
+  - DOMAIN-SUFFIX,sora.com,OpenAI
+
+
+  # ------------------------------------------------
+  # Netflix
+  - DOMAIN-SUFFIX,netflix.com,Netflix
+  - DOMAIN-SUFFIX,netflix.net,Netflix
+  - DOMAIN-SUFFIX,nflxext.com,Netflix
+  - DOMAIN-SUFFIX,nflximg.com,Netflix
+  - DOMAIN-SUFFIX,nflximg.net,Netflix
+  - DOMAIN-SUFFIX,nflxso.net,Netflix
+  - DOMAIN-SUFFIX,nflxvideo.net,Netflix
+  - DOMAIN-KEYWORD,netflixdnstest,Netflix
+  - DOMAIN-KEYWORD,dualstack.apiproxy-,Netflix
+  - DOMAIN-KEYWORD,dualstack.ichnaea-web-,Netflix
+  - IP-CIDR,23.246.0.0/18,Netflix,no-resolve
+  - IP-CIDR,34.210.42.111/32,Netflix,no-resolve
+  - IP-CIDR,37.77.184.0/21,Netflix,no-resolve
+  - IP-CIDR,45.57.0.0/17,Netflix,no-resolve
+  - IP-CIDR,52.89.124.203/32,Netflix,no-resolve
+  - IP-CIDR,54.148.37.5/32,Netflix,no-resolve
+  - IP-CIDR,64.120.128.0/17,Netflix,no-resolve
+  - IP-CIDR,66.197.128.0/17,Netflix,no-resolve
+  - IP-CIDR,108.175.32.0/20,Netflix,no-resolve
+  - IP-CIDR,192.173.64.0/18,Netflix,no-resolve
+  - IP-CIDR,198.38.96.0/19,Netflix,no-resolve
+  - IP-CIDR,198.45.48.0/20,Netflix,no-resolve
+
+  # ------------------------------------------------
+  # Twitch
+  - DOMAIN-SUFFIX,ext-twitch.tv,Twitch
+  - DOMAIN-SUFFIX,jtvnw.net,Twitch
+  - DOMAIN-SUFFIX,live-video.net,Twitch
+  - DOMAIN-SUFFIX,ttvnw.net,Twitch
+  - DOMAIN-SUFFIX,twitch-ext.rootonline.de,Twitch
+  - DOMAIN-SUFFIX,twitch.tv,Twitch
+  - DOMAIN-SUFFIX,twitchcdn.net,Twitch
+  - DOMAIN-SUFFIX,twitchsvc.net,Twitch
+  - DOMAIN-KEYWORD,ttvnw,Twitch
+
+
+  # ------------------------------------------------
+  # Steam
+  - DOMAIN-SUFFIX,cdn-ali.content.steamchina.com,Steam
+  - DOMAIN-SUFFIX,cdn-qc.content.steamchina.com,Steam
+  - DOMAIN-SUFFIX,cdn-ws.content.steamchina.com,Steam
+  - DOMAIN-SUFFIX,csgo.wmsj.cn,Steam
+  - DOMAIN-SUFFIX,dl.steam.clngaa.com,Steam
+  - DOMAIN-SUFFIX,dl.steam.ksyna.com,Steam
+  - DOMAIN-SUFFIX,dota2.wmsj.cn,Steam
+  - DOMAIN-SUFFIX,edge.steam-dns.top.comcast.net,Steam
+  - DOMAIN-SUFFIX,f3b7q2p3.ssl.hwcdn.net,Steam
+  - DOMAIN-SUFFIX,fanatical.com,Steam
+  - DOMAIN-SUFFIX,humblebundle.com,Steam
+  - DOMAIN-SUFFIX,playartifact.com,Steam
+  - DOMAIN-SUFFIX,s.team,Steam
+  - DOMAIN-SUFFIX,st.dl.bscstorage.net,Steam
+  - DOMAIN-SUFFIX,st.dl.eccdnx.com,Steam
+  - DOMAIN-SUFFIX,st.dl.pinyuncloud.com,Steam
+  - DOMAIN-SUFFIX,steam-api.com,Steam
+  - DOMAIN-SUFFIX,steam-chat.com,Steam
+  - DOMAIN-SUFFIX,steam.apac.qtlglb.com,Steam
+  - DOMAIN-SUFFIX,steam.cdn.on.net,Steam
+  - DOMAIN-SUFFIX,steam.cdn.orcon.net.nz,Steam
+  - DOMAIN-SUFFIX,steam.cdn.slingshot.co.nz,Steam
+  - DOMAIN-SUFFIX,steam.cdn.webra.ru,Steam
+  - DOMAIN-SUFFIX,steam.eca.qtlglb.com,Steam
+  - DOMAIN-SUFFIX,steam.naeu.qtlglb.com,Steam
+  - DOMAIN-SUFFIX,steam.ru.qtlglb.com,Steam
+  - DOMAIN-SUFFIX,steam.tv,Steam
+  - DOMAIN-SUFFIX,steambroadcast.akamaized.net,Steam
+  - DOMAIN-SUFFIX,steamcdn-a.akamaihd.net,Steam
+  - DOMAIN-SUFFIX,steamcommunity-a.akamaihd.net,Steam
+  - DOMAIN-SUFFIX,steamcommunity.com,Steam
+  - DOMAIN-SUFFIX,steamcontent.tnkjmec.com,Steam
+  - DOMAIN-SUFFIX,steamdeck.com,Steam
+  - DOMAIN-SUFFIX,steamgames.com,Steam
+  - DOMAIN-SUFFIX,steammobile.akamaized.net,Steam
+  - DOMAIN-SUFFIX,steampipe-kr.akamaized.net,Steam
+  - DOMAIN-SUFFIX,steampipe-partner.akamaized.net,Steam
+  - DOMAIN-SUFFIX,steampipe.akamaized.net,Steam
+  - DOMAIN-SUFFIX,steampowered.com,Steam
+  - DOMAIN-SUFFIX,steampowered.com.8686c.com,Steam
+  - DOMAIN-SUFFIX,steamstat.us,Steam
+  - DOMAIN-SUFFIX,steamstatic.com,Steam
+  - DOMAIN-SUFFIX,steamstatic.com.8686c.com,Steam
+  - DOMAIN-SUFFIX,steamstore-a.akamaihd.net,Steam
+  - DOMAIN-SUFFIX,steamunlocked.net,Steam
+  - DOMAIN-SUFFIX,steamusercontent-a.akamaihd.net,Steam
+  - DOMAIN-SUFFIX,steamuserimages-a.akamaihd.net,Steam
+  - DOMAIN-SUFFIX,steamvideo-a.akamaihd.net,Steam
+  - DOMAIN-SUFFIX,underlords.com,Steam
+  - DOMAIN-SUFFIX,valvesoftware.com,Steam
+  - DOMAIN-SUFFIX,wmsjsteam.com,Steam
+  - DOMAIN-KEYWORD,steambroadcast,Steam
+  - DOMAIN-KEYWORD,steamstore,Steam
+  - DOMAIN-KEYWORD,steamuserimages,Steam
+
+  # ------------------------------------------------
+  # Epic
+  - DOMAIN-SUFFIX,battlebreakers.com,Epic
+  - DOMAIN-SUFFIX,eac-cdn.com,Epic
+  - DOMAIN-SUFFIX,easy.ac,Epic
+  - DOMAIN-SUFFIX,easyanticheat.net,Epic
+  - DOMAIN-SUFFIX,epicgames.com,Epic
+  - DOMAIN-SUFFIX,epicgames.dev,Epic
+  - DOMAIN-SUFFIX,fortnite.com,Epic
+  - DOMAIN-SUFFIX,helpshift.com,Epic
+  - DOMAIN-SUFFIX,paragon.com,Epic
+  - DOMAIN-SUFFIX,playparagon.com,Epic
+  - DOMAIN-SUFFIX,roborecall.com,Epic
+  - DOMAIN-SUFFIX,shadowcomplex.com,Epic
+  - DOMAIN-SUFFIX,spyjinx.com,Epic
+  - DOMAIN-SUFFIX,unrealengine.com,Epic
+  - DOMAIN-SUFFIX,unrealtournament.com,Epic
+
+  # ------------------------------------------------
+  - RULE-SET,applications,DIRECT
+  - DOMAIN,clash.razord.top,DIRECT
+  - DOMAIN,yacd.haishan.me,DIRECT
+  - RULE-SET,private,DIRECT
+  - RULE-SET,reject,REJECT
+  - RULE-SET,icloud,DIRECT
+  - RULE-SET,apple,Apple
+  - RULE-SET,google,Google
+  - RULE-SET,proxy,PROXY
+  - RULE-SET,direct,DIRECT
+  - RULE-SET,lancidr,DIRECT
+  - RULE-SET,cncidr,DIRECT
+  - RULE-SET,telegramcidr,PROXY
+  - GEOIP,LAN,DIRECT
+  - GEOIP,CN,DIRECT
+  - MATCH,PROXY

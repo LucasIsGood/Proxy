@@ -1,0 +1,104 @@
+[General]
+ip-mode = v4-only
+skip-proxy = 192.168.0.0/16,10.0.0.0/8,172.16.0.0/12,localhost,*.local,e.crashlynatics.com
+bypass-tun = 10.0.0.0/8,100.64.0.0/10,127.0.0.0/8,169.254.0.0/16,172.16.0.0/12,192.0.0.0/24,192.0.2.0/24,192.88.99.0/24,192.168.0.0/16,198.51.100.0/24,203.0.113.0/24,224.0.0.0/4,255.255.255.255/32
+dns-server = system,119.29.29.29,114.114.114.114,223.5.5.5
+allow-wifi-access = false
+wifi-access-http-port = 7222
+wifi-access-socks5-port = 7221
+proxy-test-url = http://bing.com/generate_204
+internet-test-url = http://wifi.vivo.com.cn/generate_204·
+test-timeout = 3
+interface-mode = auto
+
+[Proxy]
+
+[Remote Proxy]
+5415a59343c281b8 = https://api-huacloud.net/sub?target=loon&insert=true&emoji=true&tfo=true&filename=Flower_Trojan&url=https%3A%2F%2Fapi.xmancdn.net%2Fosubscribe.php%3Ftoken2%3Dy89jrjeq-99895b4ef2sn4iq1m1
+
+[Proxy Chain]
+
+[Proxy Group]
+PROXY = select,ALL_Filter,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Proxy.png
+Onedrive = select,DIRECT,PROXY,ALL_Filter,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/OneDrive.png
+Microsoft = select,PROXY,DIRECT,ALL_Filter,img-url = https://raw.githubusercontent.com/Orz-3/mini/master/Color/Microsoft.png
+Apple = select,DIRECT,PROXY,ALL_Filter,img-url = https://raw.githubusercontent.com/Orz-3/mini/master/Color/Apple.png
+Google = select,PROXY,DIRECT,ALL_Filter,img-url = https://raw.githubusercontent.com/Orz-3/mini/master/Color/Google.png
+Spotify = select,PROXY,DIRECT,ALL_Filter,img-url = https://raw.githubusercontent.com/Orz-3/mini/master/Color/Spotify.png
+YouTube = select,PROXY,DIRECT,ALL_Filter,img-url = https://raw.githubusercontent.com/Orz-3/mini/master/Color/YouTube.png
+OpenAI = select,PROXY,DIRECT,ALL_Filter,img-url = https://raw.githubusercontent.com/Orz-3/mini/master/Color/OpenAI.png
+Netflix = select,PROXY,DIRECT,ALL_Filter,img-url = https://raw.githubusercontent.com/Orz-3/mini/master/Color/Netflix.png
+Twitch = select,PROXY,DIRECT,ALL_Filter,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Twitch.png
+
+HK = fallback,HK_Filter,interval = 600,max-timeout = 3000,img-url = https://raw.githubusercontent.com/Orz-3/mini/master/Color/HK.png
+TW = select,TW_Filter,img-url = https://raw.githubusercontent.com/Orz-3/mini/master/Color/TW.png
+SG = select,SG_Filter,img-url = https://raw.githubusercontent.com/Orz-3/mini/master/Color/SG.png
+JP = select,JP_Filter,img-url = https://raw.githubusercontent.com/Orz-3/mini/master/Color/JP.png
+KR = select,KR_Filter,img-url = https://raw.githubusercontent.com/Orz-3/mini/master/Color/KR.png
+US = select,US_Filter,img-url = https://raw.githubusercontent.com/Orz-3/mini/master/Color/US.png
+
+[Remote Filter]
+ALL_Filter = NameRegex, FilterKey = ".*"
+HK_Filter = NameRegex, FilterKey = "(?i)(港|HK|Hong)"
+TW_Filter = NameRegex, FilterKey = "(?i)(台|TW|Tai)"
+JP_Filter = NameRegex, FilterKey = "(?i)(日本|川日|东京|大阪|泉日|埼玉|沪日|深日|JP|Japan)"
+KR_Filter = NameRegex, FilterKey = "(?i)(KR|Korea|KOR|首尔|韩|韓)"
+US_Filter = NameRegex, FilterKey = "(?i)(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States)"
+SG_Filter = NameRegex, FilterKey = "(?i)(新加坡|坡|狮城|SG|Singapore)"
+
+[Rule]
+#Type:DOMAIN-SUFFIX,DOMAIN,DOMAIN-KEYWORD,USER-AGENT,URL-REGEX,IP-CIDR
+#Strategy:DIRECT,PROXY,REJECT
+#Options:no-resolve(only for IP-CIDR,IP-CIDR2,GEOIP,IP-ASN)
+
+FINAL,PROXY
+
+[Remote Rule]
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/OneDrive/OneDrive.list, policy=OneDrive, tag=OneDrive, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/Microsoft/Microsoft.list, policy=Microsoft, tag=Microsoft, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/Apple/Apple.list, policy=Apple, tag=Apple, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/Google/Google.list, policy=Google, tag=Google, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/Spotify/Spotify.list, policy=Spotify, tag=Spotify, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/YouTube/YouTube.list, policy=YouTube, tag=YouTube, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/OpenAI/OpenAI.list, policy=OpenAI, tag=OpenAI, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/Netflix/Netflix.list, policy=Netflix, tag=Netflix, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/Twitch/Twitch.list, policy=Twitch, tag=Twitch, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/Proxy/Proxy.list, policy=PROXY, tag=Global, enabled=true
+https://raw.githubusercontent.com/Loon0x00/LoonLiteRules/main/direct/cn.list, policy=DIRECT, tag=GEOIP_CN, enabled=true
+
+[Rewrite]
+
+[Script]
+
+[Plugin]
+https://kelee.one/Tool/Loon/Lpx/Tieba_remove_ads.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/BlockAdvertisers.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/12306_remove_ads.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/AliYunDrive_remove_ads.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/Amap_remove_ads.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/Bilibili_remove_ads.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/Cainiao_remove_ads.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/CosmosPodcast_remove_ads.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/DiDi_remove_ads.lpx, enabled=false
+https://kelee.one/Tool/Loon/Lpx/FleaMarket_remove_ads.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/iQiYi_Video_remove_ads.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/JD_remove_ads.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/LuckinCoffee_remove_ads.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/NeteaseCloudMusic_remove_ads.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/QuarkBrowser_remove_ads.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/Reddit_remove_ads.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/RedPaper_remove_ads.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/Spotify_remove_ads.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/Taobao_remove_ads.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/Weibo_remove_ads.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/WexinMiniPrograms_Remove_ads.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/Weixin_Official_Accounts_remove_ads.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/Weixin_external_links_unlock.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/YouTube_remove_ads.lpx, enabled=true
+
+
+[Mitm]
+ca-p12 = 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
+ca-passphrase = AF88T25Z
+skip-server-cert-verify = false
+
